@@ -112,6 +112,28 @@ class AddProfileNotifier extends _$AddProfileNotifier with AppLogger {
           .run();
     });
   }
+
+  // INSERTION 1: Adds a raw protocol key (vless://, vmess://, ss://, ...)
+  // via the repository's addLocal(), mirroring addManual's guard/match/loggy pattern.
+  Future<void> addKey({required String key, required UserOverride userOverride}) async {
+    if (state.isLoading) return;
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      final task = _profilesRepo.addLocal(key, userOverride: userOverride);
+      return await task
+          .match(
+            (err) {
+              loggy.warning("failed to add raw key profile", err);
+              throw err;
+            },
+            (r) {
+              loggy.info("successfully added raw key profile");
+              return r;
+            },
+          )
+          .run();
+    });
+  }
 }
 
 @riverpod
