@@ -108,6 +108,8 @@ class AddProfileManual extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final nameTextController = useTextEditingController();
     final urlTextController = useTextEditingController();
+    // INSERTION 2: controller for the raw protocol key field.
+    final keyTextController = useTextEditingController();
     final isAutoUpdateDisable = useState<bool>(false);
     final updateInterval = useState(.0);
     final sliderFocusNode = useFocusNode(
@@ -156,9 +158,24 @@ class AddProfileManual extends HookConsumerWidget {
             child: CustomTextFormField(
               maxLines: 1,
               controller: urlTextController,
-              validator: (value) => (value != null && !isUrl(value)) ? t.pages.profileDetails.form.invalidUrl : null,
+              // CHANGED: empty URL now passes validation, since a raw key
+              // may be supplied in the Key field below instead.
+              validator: (value) => (value != null && value.isNotEmpty && !isUrl(value))
+                  ? t.pages.profileDetails.form.invalidUrl
+                  : null,
               label: t.common.url,
               hint: t.pages.profileDetails.form.urlHint,
+            ),
+          ),
+          // INSERTION 3: raw protocol key input, right below the URL field.
+          const Gap(16),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: CustomTextFormField(
+              maxLines: 3,
+              controller: keyTextController,
+              label: 'Key / Protocol Link (e.g., vless://)',
+              hint: 'vless://, vmess://, ss://, trojan://, ...',
             ),
           ),
           const Gap(12),
@@ -224,16 +241,25 @@ class AddProfileManual extends HookConsumerWidget {
                       if (formKey.currentState!.validate()) {
                         final i = updateInterval.value.toInt();
                         final interval = i > 0 ? i : null;
-                        await ref
-                            .read(addProfileNotifierProvider.notifier)
-                            .addManual(
-                              url: urlTextController.text.trim(),
-                              userOverride: UserOverride(
-                                name: nameTextController.text.trim(),
-                                isAutoUpdateDisable: isAutoUpdateDisable.value,
-                                updateInterval: interval,
-                              ),
-                            );
+                        final override = UserOverride(
+                          name: nameTextController.text.trim(),
+                          isAutoUpdateDisable: isAutoUpdateDisable.value,
+                          updateInterval: interval,
+                        );
+                        // INSERTION 4: route to addKey() when the Key field is
+                        // populated; otherwise fall back to addManual() for URLs.
+                        final key = keyTextController.text.trim();
+                        if (key.isNotEmpty) {
+                          await ref.read(addProfileNotifierProvider.notifier).addKey(
+                                key: key,
+                                userOverride: override,
+                              );
+                        } else {
+                          await ref.read(addProfileNotifierProvider.notifier).addManual(
+                                url: urlTextController.text.trim(),
+                                userOverride: override,
+                              );
+                        }
                       }
                     },
                   ),
