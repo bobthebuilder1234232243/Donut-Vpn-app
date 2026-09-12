@@ -108,7 +108,6 @@ class AddProfileManual extends HookConsumerWidget {
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final nameTextController = useTextEditingController();
     final urlTextController = useTextEditingController();
-    // INSERTION 2: controller for the raw protocol key field.
     final keyTextController = useTextEditingController();
     final isAutoUpdateDisable = useState<bool>(false);
     final updateInterval = useState(.0);
@@ -147,7 +146,11 @@ class AddProfileManual extends HookConsumerWidget {
             child: CustomTextFormField(
               maxLines: 1,
               controller: nameTextController,
-              validator: (value) => (value?.isEmpty ?? true) ? t.pages.profileDetails.form.emptyName : null,
+              validator: (value) {
+                final key = keyTextController.text.trim();
+                if (key.isNotEmpty) return null;
+                return (value?.isEmpty ?? true) ? t.pages.profileDetails.form.emptyName : null;
+              },
               label: t.common.name,
               hint: t.pages.profileDetails.form.nameHint,
             ),
@@ -158,17 +161,39 @@ class AddProfileManual extends HookConsumerWidget {
             child: CustomTextFormField(
               maxLines: 1,
               controller: urlTextController,
-              // CHANGED: empty URL now passes validation, since a raw key
-              // may be supplied in the Key field below instead.
-              validator: (value) => (value != null && value.isNotEmpty && !isUrl(value))
-                  ? t.pages.profileDetails.form.invalidUrl
-                  : null,
+              validator: (value) {
+                final key = keyTextController.text.trim();
+                if (key.isNotEmpty) return null;
+                final url = value?.trim() ?? '';
+                if (url.isEmpty) return t.pages.profileDetails.form.invalidUrl;
+                return !isUrl(url) ? t.pages.profileDetails.form.invalidUrl : null;
+              },
               label: t.common.url,
               hint: t.pages.profileDetails.form.urlHint,
             ),
           ),
-          // INSERTION 3: raw protocol key input, right below the URL field.
-          const Gap(16),
+          // "OR" divider between Subscription fields and Raw Key field.
+          const Gap(12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              children: [
+                const Expanded(child: Divider()),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Text(
+                    'OR',
+                    style: theme.textTheme.labelSmall!.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
+                const Expanded(child: Divider()),
+              ],
+            ),
+          ),
+          const Gap(12),
+          // Raw protocol key input.
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: CustomTextFormField(
@@ -229,7 +254,6 @@ class AddProfileManual extends HookConsumerWidget {
                   )
                 : const SizedBox.shrink(),
           ),
-
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(bottom: 8),
             child: Row(
@@ -239,24 +263,37 @@ class AddProfileManual extends HookConsumerWidget {
                     child: Text(t.common.add),
                     onPressed: () async {
                       if (formKey.currentState!.validate()) {
+                        final key = keyTextController.text.trim();
+                        final name = nameTextController.text.trim();
+                        final url = urlTextController.text.trim();
                         final i = updateInterval.value.toInt();
                         final interval = i > 0 ? i : null;
-                        final override = UserOverride(
-                          name: nameTextController.text.trim(),
-                          isAutoUpdateDisable: isAutoUpdateDisable.value,
-                          updateInterval: interval,
-                        );
-                        // INSERTION 4: route to addKey() when the Key field is
-                        // populated; otherwise fall back to addManual() for URLs.
-                        final key = keyTextController.text.trim();
+
                         if (key.isNotEmpty) {
+                          // Only attach override if a name was explicitly typed.
+                          // Otherwise pass null so addLocal() falls back to the
+                          // name embedded in the key link (e.g. "#France #40926").
+                          final UserOverride? override = name.isNotEmpty
+                              ? UserOverride(
+                                  name: name,
+                                  isAutoUpdateDisable: isAutoUpdateDisable.value,
+                                  updateInterval: interval,
+                                )
+                              : null;
+
                           await ref.read(addProfileNotifierProvider.notifier).addKey(
                                 key: key,
                                 userOverride: override,
                               );
                         } else {
+                          final override = UserOverride(
+                            name: name,
+                            isAutoUpdateDisable: isAutoUpdateDisable.value,
+                            updateInterval: interval,
+                          );
+
                           await ref.read(addProfileNotifierProvider.notifier).addManual(
-                                url: urlTextController.text.trim(),
+                                url: url,
                                 userOverride: override,
                               );
                         }
@@ -267,7 +304,6 @@ class AddProfileManual extends HookConsumerWidget {
               ],
             ),
           ),
-          // const Gap(16),
         ],
       ),
     );
