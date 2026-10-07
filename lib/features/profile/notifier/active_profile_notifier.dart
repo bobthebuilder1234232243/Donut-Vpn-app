@@ -1,7 +1,7 @@
-import 'package:hiddify/features/profile/data/profile_data_mapper.dart';
-import 'package:hiddify/features/profile/data/profile_data_providers.dart';
-import 'package:hiddify/features/profile/model/profile_entity.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:donutclub/features/profile/data/profile_data_mapper.dart';
+import 'package:donutclub/features/profile/data/profile_data_providers.dart';
+import 'package:donutclub/features/profile/model/profile_entity.dart';
+import 'package:donutclub/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

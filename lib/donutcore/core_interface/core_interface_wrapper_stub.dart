@@ -1,0 +1,5 @@
+import 'package:donutclub/donutcore/core_interface/core_interface.dart';
+
+CoreInterface getCoreInterface() {
+  return CoreInterface();
+}

@@ -1,15 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hiddify/core/app_info/app_info_provider.dart';
-import 'package:hiddify/core/model/environment.dart';
-import 'package:hiddify/core/model/region.dart';
-import 'package:hiddify/core/preferences/actions_at_closing.dart';
+import 'package:donutclub/core/app_info/app_info_provider.dart';
+import 'package:donutclub/core/model/environment.dart';
+import 'package:donutclub/core/model/region.dart';
+import 'package:donutclub/core/preferences/actions_at_closing.dart';
 
-import 'package:hiddify/core/preferences/preferences_provider.dart';
-import 'package:hiddify/core/utils/preferences_utils.dart';
-import 'package:hiddify/features/per_app_proxy/model/per_app_proxy_mode.dart';
-import 'package:hiddify/features/window/notifier/window_notifier.dart';
-import 'package:hiddify/utils/platform_utils.dart';
+import 'package:donutclub/core/preferences/preferences_provider.dart';
+import 'package:donutclub/core/utils/preferences_utils.dart';
+import 'package:donutclub/features/per_app_proxy/model/per_app_proxy_mode.dart';
+import 'package:donutclub/features/window/notifier/window_notifier.dart';
+import 'package:donutclub/utils/platform_utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'general_preferences.g.dart';

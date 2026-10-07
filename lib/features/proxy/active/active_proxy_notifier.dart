@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:dio/dio.dart';
-import 'package:hiddify/core/haptic/haptic_service.dart';
-import 'package:hiddify/core/preferences/general_preferences.dart';
-import 'package:hiddify/core/utils/throttler.dart';
-import 'package:hiddify/features/connection/notifier/connection_notifier.dart';
-import 'package:hiddify/features/proxy/data/proxy_data_providers.dart';
-import 'package:hiddify/features/proxy/data/proxy_repository.dart';
-import 'package:hiddify/features/proxy/model/ip_info_entity.dart' as oldipinfo;
-import 'package:hiddify/features/proxy/model/proxy_failure.dart';
-import 'package:hiddify/hiddifycore/generated/v2/hcore/hcore.pb.dart';
+import 'package:donutclub/core/haptic/haptic_service.dart';
+import 'package:donutclub/core/preferences/general_preferences.dart';
+import 'package:donutclub/core/utils/throttler.dart';
+import 'package:donutclub/features/connection/notifier/connection_notifier.dart';
+import 'package:donutclub/features/proxy/data/proxy_data_providers.dart';
+import 'package:donutclub/features/proxy/data/proxy_repository.dart';
+import 'package:donutclub/features/proxy/model/ip_info_entity.dart' as oldipinfo;
+import 'package:donutclub/features/proxy/model/proxy_failure.dart';
+import 'package:donutclub/donutcore/generated/v2/hcore/hcore.pb.dart';
 
-import 'package:hiddify/utils/riverpod_utils.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:donutclub/utils/riverpod_utils.dart';
+import 'package:donutclub/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'active_proxy_notifier.g.dart';

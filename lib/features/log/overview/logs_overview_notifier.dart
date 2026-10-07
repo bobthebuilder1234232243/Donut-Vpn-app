@@ -1,12 +1,12 @@
 import 'dart:async';
 
-import 'package:hiddify/features/log/data/log_data_providers.dart';
-import 'package:hiddify/features/log/model/log_entity.dart';
-import 'package:hiddify/features/log/model/log_level.dart';
-import 'package:hiddify/features/log/overview/logs_overview_state.dart';
-import 'package:hiddify/hiddifycore/init_signal.dart';
-import 'package:hiddify/utils/riverpod_utils.dart';
-import 'package:hiddify/utils/utils.dart';
+import 'package:donutclub/features/log/data/log_data_providers.dart';
+import 'package:donutclub/features/log/model/log_entity.dart';
+import 'package:donutclub/features/log/model/log_level.dart';
+import 'package:donutclub/features/log/overview/logs_overview_state.dart';
+import 'package:donutclub/donutcore/init_signal.dart';
+import 'package:donutclub/utils/riverpod_utils.dart';
+import 'package:donutclub/utils/utils.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:rxdart/rxdart.dart';
 
