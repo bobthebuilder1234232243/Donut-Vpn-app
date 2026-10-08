@@ -19,7 +19,7 @@ env:
   FLUTTER_VERSION: '3.38.5'
   UPLOAD_ARTIFACT: "${{ inputs.upload-artifact }}"
   TAG_NAME: "${{ inputs.tag-name }}"
-  TARGET_NAME_deb: "Hiddify-Debian-x64"
+  TARGET_NAME_deb: "Donut-Vpn-Debian-x64"
 
 jobs:
   test:
