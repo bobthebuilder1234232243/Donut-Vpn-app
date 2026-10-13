@@ -34,7 +34,7 @@ class HomePage extends HookConsumerWidget {
         //     : null,
         title: Row(
           children: [
-            Assets.images.logo.svg(height: 24),
+            Image.asset('assets/images/donut_logo.png', height: 24),
             const Gap(8),
             Text.rich(
               TextSpan(

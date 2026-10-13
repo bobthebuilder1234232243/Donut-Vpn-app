@@ -156,6 +156,8 @@ flutter:
     - assets/images/disconnect_norouz.PNG
     - assets/images/world_map.png
     - assets/images/source/ic_launcher_border.png
+    - assets/images/donut_logo.png
+    - assets/images/donut_splash.png
 
   fonts:
     - family: Shabnam
