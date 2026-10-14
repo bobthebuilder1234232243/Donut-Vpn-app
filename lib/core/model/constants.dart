@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:donutclub/utils/utils.dart';
 
 abstract class Constants {
-  static const appName = "Hiddify";
+  static const appName = "Donut Vpn";
   static const githubUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app";
   static const licenseUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app?tab=License-1-ov-file#readme";
   static const githubReleasesApiUrl = "https://api.github.com/repos/bobthebuilder1234232243/Donut-Vpn-app/releases";
-  static const githubLatestReleaseUrl = "https://github.com/hiddify/hiddify-app/releases/latest";
+  static const githubLatestReleaseUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app/releases/latest";
   static const appCastUrl = "https://raw.githubusercontent.com/bobthebuilder1234232243/Donut-Vpn-app/main/appcast.xml";
   static const telegramChannelUrl = "https://t.me/donutclub";
   static const privacyPolicyUrl = "https://donutclub.site/privacy/";

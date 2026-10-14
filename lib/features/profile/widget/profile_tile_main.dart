@@ -16,7 +16,7 @@ class ProfileTileMain extends HookConsumerWidget {
   final ProfileEntity profile;
   final bool isMain;
   static const verifiedDomains = [
-    'hiddify.com',
+    'donutclub.site',
     // 't.me',
     // 'telegram.me',
     // 'instagram.com',
@@ -24,11 +24,11 @@ class ProfileTileMain extends HookConsumerWidget {
     // 'facebook.com',
   ];
   static const verifiedLinks = [
-    'https://t.me/hiddify',
-    'https://t.me/hiddify_board',
-    'https://instagram.com/hiddify_com',
-    'https://x.com/hiddify_com',
-    'https://facebook.com/hiddify',
+    'https://techperson1234.github.io/Donut-VPN/',
+    'https://techperson1234.github.io/Donut-VPN/',
+    'https://techperson1234.github.io/Donut-VPN/',
+    'https://techperson1234.github.io/Donut-VPN/',
+    'https://techperson1234.github.io/Donut-VPN/',
   ];
   Future<void> _launchUrlWithCheck(BuildContext context, WidgetRef ref, String url) async {
     final uri = Uri.parse(url);
@@ -183,7 +183,7 @@ class ProfileTileMain extends HookConsumerWidget {
     if (host.endsWith('facebook.com')) {
       return FontAwesomeIcons.facebook;
     }
-    if (host.endsWith('hiddify.com')) {
+    if (host.endsWith('donutclub.site')) {
       // return IconData();
     }
     return icon ?? FluentIcons.link_24_regular;
@@ -205,7 +205,7 @@ class ProfileTileMain extends HookConsumerWidget {
     if (host.endsWith('facebook.com')) {
       return uri.pathSegments.lastWhere((e) => e.isNotEmpty, orElse: () => '');
     }
-    if (host.endsWith('hiddify.com')) {
+    if (host.endsWith('donutclub.site')) {
       return "Hiddify";
     }
     return uri.host;

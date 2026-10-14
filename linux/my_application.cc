@@ -14,7 +14,7 @@ struct _MyApplication
 };
 
 G_DEFINE_TYPE(MyApplication, my_application, GTK_TYPE_APPLICATION)
-#define ICON_PATH "./hiddify.png"
+// icon path removed (handled by system theme)
 
 // Implements GApplication::activate.
 static void my_application_activate(GApplication *application)
@@ -30,7 +30,7 @@ static void my_application_activate(GApplication *application)
 
   GtkWindow *window =
       GTK_WINDOW(gtk_application_window_new(GTK_APPLICATION(application)));
-  gtk_window_set_icon_from_file(window, ICON_PATH, NULL);
+  // icon loading removed (handled by system theme)
 
   // Use a header bar when running in GNOME as this is the common style used
   // by applications and is the setup most users will be using (e.g. Ubuntu
