@@ -2,7 +2,7 @@
 //  Bundle+Properties.swift
 //  Runner
 //
-//  Created by Hiddify on 12/26/23.
+//  Created by Donut Vpn on 12/26/23.
 //
 
 import Foundation

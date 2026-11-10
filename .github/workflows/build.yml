@@ -89,7 +89,7 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v6
         with:
-          name: hiddify-deb
+          name: donut-deb
           path: ./out
           retention-days: 7
 

@@ -183,9 +183,9 @@ flutter_native_splash:
     image: assets/images/source/ic_launcher_foreground.png
 
 ffigen:
-  name: "HiddifyCoreNativeLibrary"
-  description: "Bindings to Hiddify Core Library"
-  output: "lib/gen/hiddify_core_generated_bindings.dart"
+  name: "DonutCoreNativeLibrary"
+  description: "Bindings to Donut Core Library"
+  output: "lib/gen/donut_core_generated_bindings.dart"
   headers:
     entry-points:
       - "hiddify-core/bin/desktop.h"

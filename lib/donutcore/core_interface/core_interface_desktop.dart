@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:ffi/ffi.dart';
 import 'package:grpc/grpc.dart';
 import 'package:donutclub/core/model/directories.dart';
-import 'package:donutclub/gen/hiddify_core_generated_bindings.dart';
+import 'package:donutclub/gen/donut_core_generated_bindings.dart';
 import 'package:donutclub/donutcore/core_interface/core_interface.dart';
 import 'package:donutclub/donutcore/core_interface/mtls_channel_cred.dart';
 import 'package:donutclub/donutcore/generated/v2/hcore/hcore.pb.dart';
@@ -18,14 +18,14 @@ import 'package:loggy/loggy.dart';
 
 import 'package:path/path.dart' as p;
 
-final _logger = Loggy('HiddifyCoreFFI');
+final _logger = Loggy('DonutCoreFFI');
 typedef StopFunc = Pointer<Utf8> Function();
 typedef StopFuncDart = Pointer<Utf8> Function();
 
 class CoreInterfaceDesktop extends CoreInterface with InfraLogger {
-  static final HiddifyCoreNativeLibrary _box = _gen();
+  static final DonutCoreNativeLibrary _box = _gen();
 
-  static HiddifyCoreNativeLibrary _gen() {
+  static DonutCoreNativeLibrary _gen() {
     String fullPath = "";
     if (Platform.environment.containsKey('FLUTTER_TEST')) {
       fullPath = "hiddify-core";
@@ -44,7 +44,7 @@ class CoreInterfaceDesktop extends CoreInterface with InfraLogger {
     // final errPtr2 = stopFunc();
     // final err = errPtr2.cast<Utf8>().toDartString();
 
-    return HiddifyCoreNativeLibrary(lib);
+    return DonutCoreNativeLibrary(lib);
   }
 
   Future<bool> isMusl() async {
