@@ -20,7 +20,7 @@ import 'package:donutclub/features/profile/notifier/profiles_update_notifier.dar
 import 'package:donutclub/features/shortcut/shortcut_wrapper.dart';
 import 'package:donutclub/features/system_tray/notifier/system_tray_notifier.dart';
 import 'package:donutclub/features/window/widget/window_wrapper.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:donutclub/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:toastification/toastification.dart';
@@ -39,12 +39,12 @@ class App extends HookConsumerWidget with WidgetsBindingObserver, PresLogger {
   void onPause(WidgetRef ref) {
     if (PlatformUtils.isDesktop) return;
     isOnPauseCalled = true;
-    ref.read(hiddifyCoreServiceProvider).closeFront();
+    ref.read(donutCoreServiceProvider).closeFront();
   }
 
   void onResume(WidgetRef ref) {
     // if (PlatformUtils.isDesktop) return;
-    ref.read(hiddifyCoreServiceProvider).init();
+    ref.read(donutCoreServiceProvider).init();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (isOnPauseCalled && PlatformUtils.isAndroid) ref.invalidate(perAppProxyServiceProvider);

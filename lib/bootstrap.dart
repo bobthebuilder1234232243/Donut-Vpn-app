@@ -25,7 +25,7 @@ import 'package:donutclub/features/profile/notifier/active_profile_notifier.dart
 import 'package:donutclub/features/proxy/active/active_proxy_notifier.dart';
 import 'package:donutclub/features/system_tray/notifier/system_tray_notifier.dart';
 import 'package:donutclub/features/window/notifier/window_notifier.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:donutclub/riverpod_observer.dart';
 import 'package:donutclub/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -97,7 +97,7 @@ Future<void> lazyBootstrap(WidgetsBinding widgetsBinding, Environment env) async
     "chain profile unblocker",
     () => container.read(chainProfileNotifierProvider(ChainType.unblocker).future),
   );
-  await _safeInit("hiddify-core", () => container.read(hiddifyCoreServiceProvider).init());
+  await _safeInit("donut-core", () => container.read(donutCoreServiceProvider).init());
 
   // Eagerly listen to activeProxyNotifierProvider to force synchronous evaluation in microtasks,
   // avoiding lazy build-phase flushes and sibling dependency collisions on the Home page.

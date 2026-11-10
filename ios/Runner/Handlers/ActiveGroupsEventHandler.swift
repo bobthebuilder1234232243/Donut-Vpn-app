@@ -1,6 +1,6 @@
 import Foundation
 import Combine
-import HiddifyCore
+import DonutCore
 
 public class ActiveGroupsEventHandler: NSObject, FlutterPlugin, FlutterStreamHandler {
     

@@ -46,7 +46,7 @@ DESKTOP_OUT=donutvpn-core$(SEP)bin
 GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=donut-core
-CORE_NAME=hiddify-lib
+CORE_NAME=donutvpn-lib
 LIB_NAME=donut-core
 
 ifeq ($(CHANNEL),prod)
@@ -123,9 +123,9 @@ generate_kotlin_protos:
 		--exclude='*' \
 		donutvpn-core/v2 donutvpn-core/extension ./android/app/src/main/protos/
 	# # Find .proto files and update package declarations
-	# find "./android/app/src/main/java/com/hiddify/hiddify/protos" -type f -name "*.java" | while read -r proto_file; do \
+	# find "./android/app/src/main/java/com/donutvpn/app/protos" -type f -name "*.java" | while read -r proto_file; do \
 	#     if grep -q "^package " "$$proto_file"; then \
-	#         $(SED) 's/^package \([\w\.]*\)/package com.hiddify.hiddify.protos.\1/g' "$$proto_file"; \
+	#         $(SED) 's/^package \([\w\.]*\)/package com.donutvpn.app.protos.\1/g' "$$proto_file"; \
 	#     fi \
 	# done
 
@@ -133,8 +133,8 @@ generate_go_protoc:
 	make -C donutvpn-core -f Makefile protos
 	echo "SED: $(SED)"
 generate_dart_protoc:
-	mkdir -p lib/hiddifycore/generated
-	protoc --dart_out=grpc:lib/hiddifycore/generated --proto_path=donutvpn-core/  $(shell find donutvpn-core/v2 donutvpn-core/extension -name "*.proto") 	google/protobuf/timestamp.proto ; \
+	mkdir -p lib/donutcore/generated
+	protoc --dart_out=grpc:lib/donutcore/generated --proto_path=donutvpn-core/  $(shell find donutvpn-core/v2 donutvpn-core/extension -name "*.proto") 	google/protobuf/timestamp.proto ; \
 
 .PHONY: protos
 protos: generate_go_protoc generate_kotlin_protos generate_dart_protoc
@@ -301,11 +301,11 @@ windows-zip-release:
 	$(YELLOW)Post-processing Windows portable$(DONE); \
 	cd "$$ZIP_DIR"; \
 	$(BLUE)Extracting and Repacking...$(DONE); \
-	mkdir -p Hiddify; \
-	unzip -q "$$ZIP_FILE" -d Hiddify/; \
+	mkdir -p DonutVpn; \
+	unzip -q "$$ZIP_FILE" -d DonutVpn/; \
 	rm "$$ZIP_FILE"; \
-	tar -a -cf "$$FILE_NAME.zip" Hiddify; \
-	rm -rf Hiddify; \
+	tar -a -cf "$$FILE_NAME.zip" DonutVpn; \
+	rm -rf DonutVpn; \
 	$(GREEN)Successful$(DONE)
 
 windows-exe-release:
@@ -384,33 +384,33 @@ linux-appimage-release:
 	cp ../../linux/packaging/appimage/AppRun squashfs-root/AppRun; \
 	$(BLUE)Granting permissions$(DONE); \
 	chmod +x squashfs-root/AppRun; \
-	$(BLUE)Adding StartupWMClass to hiddify.desktop$(DONE); \
-	sed -i '/^\[Desktop Entry\]/a StartupWMClass=app.hiddify.com' "squashfs-root/hiddify.desktop"; \
+	$(BLUE)Adding StartupWMClass to donutvpn.desktop$(DONE); \
+	sed -i '/^\[Desktop Entry\]/a StartupWMClass=app.donutvpn.com' "squashfs-root/donutvpn.desktop"; \
 	$(BLUE)Removing old AppImage$(DONE); \
 	rm *.AppImage; \
 	$(BLUE)Deleting bundled libstdc++ to fix Arch Linux compatibility...$(DONE); \
 	find squashfs-root/usr/lib -name "libstdc++.so.6" -delete; \
 	$(BLUE)Rebuilding AppImage$(DONE); \
-	ARCH=x86_64 appimagetool --no-appstream squashfs-root Hiddify.AppImage > /dev/null; \
+	ARCH=x86_64 appimagetool --no-appstream squashfs-root DonutVpn.AppImage > /dev/null; \
 	$(BLUE)Cleaning up squashfs$(DONE); \
 	rm -rf squashfs-root; \
 	$(YELLOW)Creating Portable Package$(DONE); \
-	PKG_DIR_NAME="hiddify-linux-appimage"; \
+	PKG_DIR_NAME="donutvpn-linux-appimage"; \
 	$(BLUE)Creating dir: $$PKG_DIR_NAME$(DONE); \
 	mkdir -p "$$PKG_DIR_NAME"; \
-	$(BLUE)Moving Hiddify.AppImage$(DONE); \
-	cp -p "Hiddify.AppImage" "$$PKG_DIR_NAME/Hiddify.AppImage"; \
+	$(BLUE)Moving DonutVpn.AppImage$(DONE); \
+	cp -p "DonutVpn.AppImage" "$$PKG_DIR_NAME/DonutVpn.AppImage"; \
 	$(BLUE)Creating Portable Home directory$(DONE); \
-	mkdir -p "$$PKG_DIR_NAME/Hiddify.AppImage.home"; \
+	mkdir -p "$$PKG_DIR_NAME/DonutVpn.AppImage.home"; \
 	$(BLUE)Compressing to .tar.gz$(DONE); \
 	tar -czf "$$PKG_DIR_NAME.tar.gz" -C . "$$PKG_DIR_NAME"; \
 	$(BLUE)Removing intermediate directory$(DONE); \
 	rm -rf "$$PKG_DIR_NAME"; \
 	$(GREEN)Successful$(DONE)
 
-DOCKER_IMAGE_NAME := hiddify-linux-builder
-DOCKER_FLUTTER_VOL := hiddify-flutter-sdk-cache
-DOCKER_PUB_VOL := hiddify-pub-cache
+DOCKER_IMAGE_NAME := donutvpn-linux-builder
+DOCKER_FLUTTER_VOL := donutvpn-flutter-sdk-cache
+DOCKER_PUB_VOL := donutvpn-pub-cache
 
 ifeq ($(OS),Windows_NT)
     FIX_OWNERSHIP := echo \"Windows detected: Skipping chown\"
@@ -500,7 +500,7 @@ macos-libs:
 
 ios-libs: #not tested
 	mkdir -p $(IOS_OUT)
-	rm -rf $(IOS_OUT)/HiddifyCore.xcframework
+	rm -rf $(IOS_OUT)/DonutCore.xcframework
 	curl -L $(CORE_URL)/$(CORE_NAME)-ios.tar.gz | tar xz -C "$(IOS_OUT)"
 
 get-geo-assets:
@@ -525,9 +525,9 @@ build-macos-libs:
 	make -C donutvpn-core -f Makefile macos
 
 build-ios-libs: 
-	rm -rf $(IOS_OUT)/HiddifyCore.xcframework 
+	rm -rf $(IOS_OUT)/DonutCore.xcframework 
 	make -C donutvpn-core -f Makefile ios  
-	mv $(BINDIR)/HiddifyCore.xcframework $(IOS_OUT)/HiddifyCore.xcframework
+	mv $(BINDIR)/DonutCore.xcframework $(IOS_OUT)/DonutCore.xcframework
 
 release: # Create a new tag for release.
 	@CORE_VERSION=$(core.version) bash -c ".github/change_version.sh "

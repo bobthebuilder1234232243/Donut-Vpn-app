@@ -8,7 +8,7 @@ import 'package:donutclub/features/connection/model/connection_status.dart';
 import 'package:donutclub/features/profile/data/profile_path_resolver.dart';
 import 'package:donutclub/features/profile/model/profile_entity.dart';
 import 'package:donutclub/features/settings/data/config_option_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service.dart';
+import 'package:donutclub/donutcore/donut_core_service.dart';
 import 'package:donutclub/singbox/model/core_status.dart';
 import 'package:donutclub/singbox/model/singbox_config_option.dart';
 import 'package:donutclub/utils/utils.dart';
@@ -37,7 +37,7 @@ class ConnectionRepositoryImpl with ExceptionHandler, InfraLogger implements Con
   final Ref ref;
 
   final Directories directories;
-  final HiddifyCoreService singbox;
+  final DonutCoreService singbox;
 
   final ConfigOptionRepository configOptionRepository;
   final ProfilePathResolver profilePathResolver;

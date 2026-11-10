@@ -1,6 +1,6 @@
 import 'package:donutclub/core/http_client/http_client_provider.dart';
 import 'package:donutclub/features/proxy/data/proxy_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -8,5 +8,5 @@ part 'proxy_data_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 ProxyRepository proxyRepository(Ref ref) {
-  return ProxyRepositoryImpl(singbox: ref.watch(hiddifyCoreServiceProvider), client: ref.watch(httpClientProvider));
+  return ProxyRepositoryImpl(singbox: ref.watch(donutCoreServiceProvider), client: ref.watch(httpClientProvider));
 }

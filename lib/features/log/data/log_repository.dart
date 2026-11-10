@@ -5,7 +5,7 @@ import 'package:donutclub/features/log/data/log_parser.dart';
 import 'package:donutclub/features/log/data/log_path_resolver.dart';
 import 'package:donutclub/features/log/model/log_entity.dart';
 import 'package:donutclub/features/log/model/log_failure.dart';
-import 'package:donutclub/donutcore/hiddify_core_service.dart';
+import 'package:donutclub/donutcore/donut_core_service.dart';
 import 'package:donutclub/utils/custom_loggers.dart';
 
 abstract interface class LogRepository {
@@ -17,7 +17,7 @@ abstract interface class LogRepository {
 class LogRepositoryImpl with ExceptionHandler, InfraLogger implements LogRepository {
   LogRepositoryImpl({required this.singbox, required this.logPathResolver});
 
-  final HiddifyCoreService singbox;
+  final DonutCoreService singbox;
   final LogPathResolver logPathResolver;
 
   @override

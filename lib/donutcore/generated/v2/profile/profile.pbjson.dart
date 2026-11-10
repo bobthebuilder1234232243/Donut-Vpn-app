@@ -39,12 +39,12 @@ const ProfileEntity$json = {
       '10': 'subInfo'
     },
     {
-      '1': 'override_hiddify_options',
+      '1': 'override_donut_options',
       '3': 8,
       '4': 1,
       '5': 11,
-      '6': '.hiddifyoptions.HiddifyOptions',
-      '10': 'overrideHiddifyOptions'
+      '6': '.donutoptions.DonutOptions',
+      '10': 'overrideDonutOptions'
     },
   ],
 };
@@ -54,9 +54,9 @@ final $typed_data.Uint8List profileEntityDescriptor = $convert.base64Decode(
     'Cg1Qcm9maWxlRW50aXR5Eg4KAmlkGAEgASgJUgJpZBISCgRuYW1lGAMgASgJUgRuYW1lEhAKA3'
     'VybBgEIAEoCVIDdXJsEh8KC2xhc3RfdXBkYXRlGAUgASgDUgpsYXN0VXBkYXRlEjEKB29wdGlv'
     'bnMYBiABKAsyFy5wcm9maWxlLlByb2ZpbGVPcHRpb25zUgdvcHRpb25zEjQKCHN1Yl9pbmZvGA'
-    'cgASgLMhkucHJvZmlsZS5TdWJzY3JpcHRpb25JbmZvUgdzdWJJbmZvElgKGG92ZXJyaWRlX2hp'
-    'ZGRpZnlfb3B0aW9ucxgIIAEoCzIeLmhpZGRpZnlvcHRpb25zLkhpZGRpZnlPcHRpb25zUhZvdm'
-    'VycmlkZUhpZGRpZnlPcHRpb25z');
+    'cgASgLMhkucHJvZmlsZS5TdWJzY3JpcHRpb25JbmZvUgdzdWJJbmZvElAKFm92ZXJyaWRlX2Rv'
+    'bnV0X29wdGlvbnMYCCABKAsyGi5kb251dG9wdGlvbnMuRG9udXRPcHRpb25zUhRvdmVycmlkZU'
+    'RvbnV0T3B0aW9ucw==');
 
 @$core.Deprecated('Use profileOptionsDescriptor instead')
 const ProfileOptions$json = {

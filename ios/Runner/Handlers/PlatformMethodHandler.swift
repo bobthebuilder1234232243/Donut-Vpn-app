@@ -7,7 +7,7 @@
 
 import Flutter
 import Combine
-import HiddifyCore
+import DonutCore
 
 public class PlatformMethodHandler: NSObject, FlutterPlugin {
         

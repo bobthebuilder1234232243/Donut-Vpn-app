@@ -11,16 +11,16 @@ let package = Package(
      ],
      products: [
          .library(
-             name: "HiddifyCore",
-             targets: ["HiddifyCore"]),
+             name: "DonutCore",
+             targets: ["DonutCore"]),
      ],
      dependencies: [
          // No dependencies
      ],
      targets: [
         .binaryTarget(
-            name: "HiddifyCore",
-            path: "../Frameworks/HiddifyCore.xcframework"
+            name: "DonutCore",
+            path: "../Frameworks/DonutCore.xcframework"
         )
      ]
  )

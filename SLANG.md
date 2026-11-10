@@ -1,5 +1,5 @@
 # Custom Command: update-slang
-Requirements: Master Flutter's `slang` framework. Perform all translations strictly based on project context (Hiddify VPN client).
+Requirements: Master Flutter's `slang` framework. Perform all translations strictly based on project context (DonutVpn VPN client).
 
 Execute these phases sequentially when `update-slang` is triggered:
 

@@ -13,7 +13,7 @@ import 'package:donutclub/features/profile/model/profile_entity.dart';
 import 'package:donutclub/features/profile/model/profile_failure.dart';
 import 'package:donutclub/features/profile/model/profile_sort_enum.dart';
 import 'package:donutclub/features/settings/data/config_option_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service.dart';
+import 'package:donutclub/donutcore/donut_core_service.dart';
 import 'package:donutclub/utils/custom_loggers.dart';
 import 'package:uuid/uuid.dart';
 
@@ -40,7 +40,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
   ProfileRepositoryImpl({
     required ProfileDataSource profileDataSource,
     required ProfilePathResolver profilePathResolver,
-    required HiddifyCoreService singbox,
+    required DonutCoreService singbox,
     required ConfigOptionRepository configOptionRepository,
     required ProfileParser profileParser,
   }) : _profileParser = profileParser,
@@ -51,7 +51,7 @@ class ProfileRepositoryImpl with ExceptionHandler, InfraLogger implements Profil
 
   final ProfileDataSource _profileDataSource;
   final ProfilePathResolver _profilePathResolver;
-  final HiddifyCoreService _singbox;
+  final DonutCoreService _singbox;
   final ConfigOptionRepository _configOptionRepo;
   final ProfileParser _profileParser;
 

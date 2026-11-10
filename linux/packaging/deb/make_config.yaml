@@ -12,7 +12,7 @@ icon: assets/images/source/ic_launcher_border.png
 
 postinstall_scripts:
   - echo "Setting up Donut Vpn..."
-  - sudo sed -i '/^\[Desktop Entry\]/a StartupWMClass=app.hiddify.com' "/usr/share/applications/donutvpn.desktop"
+  - sudo sed -i '/^\[Desktop Entry\]/a StartupWMClass=app.donutvpn.com' "/usr/share/applications/donutvpn.desktop"
   - echo "Search and remove donutvpn.desktop from .local"
   - for user_dir in /home/*; do if [ -f "$user_dir/.local/share/applications/donutvpn.desktop" ]; then rm -f "$user_dir/.local/share/applications/donutvpn.desktop"; echo "Found and removed donutvpn.desktop from $user_dir .local"; fi; done
   - update-desktop-database /usr/share/applications
@@ -20,8 +20,8 @@ postinstall_scripts:
 
 postuninstall_scripts:
   - echo "Removing Donut Vpn user data..."
-  - for user_dir in /home/*; do if [ -d "$user_dir/.local/share/app.hiddify.com" ]; then rm -rf "$user_dir/.local/share/app.hiddify.com"; echo "Removed data from $user_dir"; fi; done
-  - rm -rf /root/.local/share/app.hiddify.com
+  - for user_dir in /home/*; do if [ -d "$user_dir/.local/share/app.donutvpn.com" ]; then rm -rf "$user_dir/.local/share/app.donutvpn.com"; echo "Removed data from $user_dir"; fi; done
+  - rm -rf /root/.local/share/app.donutvpn.com
   - echo "Donut Vpn data cleanup complete."
 
 keywords:
@@ -49,4 +49,4 @@ supported_mime_type:
   - x-scheme-handler/clashmeta
   - x-scheme-handler/sing-box
 
-metainfo: linux/packaging/app.hiddify.com.appdata.xml
+metainfo: linux/packaging/app.donutvpn.com.appdata.xml

@@ -5,7 +5,7 @@ import 'package:donutclub/core/localization/translations.dart';
 import 'package:donutclub/core/notification/in_app_notification_controller.dart';
 import 'package:donutclub/core/router/dialog/dialog_notifier.dart';
 import 'package:donutclub/features/settings/data/config_option_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class LanSharingPreferenceWidget extends HookConsumerWidget {
@@ -17,7 +17,7 @@ class LanSharingPreferenceWidget extends HookConsumerWidget {
     final theme = Theme.of(context);
 
     Future<String?> getSharingLink() async {
-      final ipResult = await ref.read(hiddifyCoreServiceProvider).getLANIP().run();
+      final ipResult = await ref.read(donutCoreServiceProvider).getLANIP().run();
       final ip = ipResult.fold((_) => null, (r) => r.ip);
       if (ip == null) {
         ref.read(inAppNotificationControllerProvider).showErrorToast(t.pages.settings.inbound.lanIPError);
@@ -28,7 +28,7 @@ class LanSharingPreferenceWidget extends HookConsumerWidget {
       if (password.isEmpty) {
         return 'socks://$ip:$port';
       } else {
-        return 'socks://hiddify:$password@$ip:$port';
+        return 'socks://donutvpn:$password@$ip:$port';
       }
     }
 

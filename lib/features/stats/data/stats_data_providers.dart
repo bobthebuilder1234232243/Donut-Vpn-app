@@ -1,10 +1,10 @@
 import 'package:donutclub/features/stats/data/stats_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'stats_data_providers.g.dart';
 
 @Riverpod(keepAlive: true)
 StatsRepository statsRepository(StatsRepositoryRef ref) {
-  return StatsRepositoryImpl(singbox: ref.watch(hiddifyCoreServiceProvider));
+  return StatsRepositoryImpl(singbox: ref.watch(donutCoreServiceProvider));
 }

@@ -15,7 +15,7 @@ import 'dart:core' as $core;
 import 'package:fixnum/fixnum.dart' as $fixnum;
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import '../hiddifyoptions/hiddify_options.pb.dart' as $0;
+import '../donutoptions/donut_options.pb.dart' as $0;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
@@ -28,7 +28,7 @@ class ProfileEntity extends $pb.GeneratedMessage {
     $fixnum.Int64? lastUpdate,
     ProfileOptions? options,
     SubscriptionInfo? subInfo,
-    $0.HiddifyOptions? overrideHiddifyOptions,
+    $0.DonutOptions? overrideDonutOptions,
   }) {
     final result = create();
     if (id != null) result.id = id;
@@ -37,8 +37,8 @@ class ProfileEntity extends $pb.GeneratedMessage {
     if (lastUpdate != null) result.lastUpdate = lastUpdate;
     if (options != null) result.options = options;
     if (subInfo != null) result.subInfo = subInfo;
-    if (overrideHiddifyOptions != null)
-      result.overrideHiddifyOptions = overrideHiddifyOptions;
+    if (overrideDonutOptions != null)
+      result.overrideDonutOptions = overrideDonutOptions;
     return result;
   }
 
@@ -63,8 +63,8 @@ class ProfileEntity extends $pb.GeneratedMessage {
         subBuilder: ProfileOptions.create)
     ..aOM<SubscriptionInfo>(7, _omitFieldNames ? '' : 'subInfo',
         subBuilder: SubscriptionInfo.create)
-    ..aOM<$0.HiddifyOptions>(8, _omitFieldNames ? '' : 'overrideHiddifyOptions',
-        subBuilder: $0.HiddifyOptions.create)
+    ..aOM<$0.DonutOptions>(8, _omitFieldNames ? '' : 'overrideDonutOptions',
+        subBuilder: $0.DonutOptions.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -148,15 +148,15 @@ class ProfileEntity extends $pb.GeneratedMessage {
   SubscriptionInfo ensureSubInfo() => $_ensure(5);
 
   @$pb.TagNumber(8)
-  $0.HiddifyOptions get overrideHiddifyOptions => $_getN(6);
+  $0.DonutOptions get overrideDonutOptions => $_getN(6);
   @$pb.TagNumber(8)
-  set overrideHiddifyOptions($0.HiddifyOptions value) => $_setField(8, value);
+  set overrideDonutOptions($0.DonutOptions value) => $_setField(8, value);
   @$pb.TagNumber(8)
-  $core.bool hasOverrideHiddifyOptions() => $_has(6);
+  $core.bool hasOverrideDonutOptions() => $_has(6);
   @$pb.TagNumber(8)
-  void clearOverrideHiddifyOptions() => $_clearField(8);
+  void clearOverrideDonutOptions() => $_clearField(8);
   @$pb.TagNumber(8)
-  $0.HiddifyOptions ensureOverrideHiddifyOptions() => $_ensure(6);
+  $0.DonutOptions ensureOverrideDonutOptions() => $_ensure(6);
 }
 
 /// ProfileOptions defines options for a profile.

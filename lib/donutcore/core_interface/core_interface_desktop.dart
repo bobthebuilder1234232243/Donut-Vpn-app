@@ -28,17 +28,17 @@ class CoreInterfaceDesktop extends CoreInterface with InfraLogger {
   static DonutCoreNativeLibrary _gen() {
     String fullPath = "";
     if (Platform.environment.containsKey('FLUTTER_TEST')) {
-      fullPath = "hiddify-core";
+      fullPath = "donut-core";
     }
     if (Platform.isWindows) {
-      fullPath = p.join(fullPath, "hiddify-core.dll");
+      fullPath = p.join(fullPath, "donut-core.dll");
     } else if (Platform.isMacOS) {
-      fullPath = p.join(fullPath, "hiddify-core.dylib");
+      fullPath = p.join(fullPath, "donut-core.dylib");
     } else {
-      fullPath = p.join(fullPath, "hiddify-core.so");
+      fullPath = p.join(fullPath, "donut-core.so");
     }
 
-    _logger.debug('hiddify-core native libs path: "$fullPath"');
+    _logger.debug('donut-core native libs path: "$fullPath"');
     final lib = DynamicLibrary.open(fullPath);
     // final stopFunc = lib.lookup<NativeFunction<StopFunc>>('stop').asFunction<StopFunc>();
     // final errPtr2 = stopFunc();

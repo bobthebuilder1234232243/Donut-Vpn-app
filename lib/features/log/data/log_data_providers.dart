@@ -1,7 +1,7 @@
 import 'package:donutclub/core/directories/directories_provider.dart';
 import 'package:donutclub/features/log/data/log_path_resolver.dart';
 import 'package:donutclub/features/log/data/log_repository.dart';
-import 'package:donutclub/donutcore/hiddify_core_service_provider.dart';
+import 'package:donutclub/donutcore/donut_core_service_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'log_data_providers.g.dart';
@@ -9,7 +9,7 @@ part 'log_data_providers.g.dart';
 @Riverpod(keepAlive: true)
 Future<LogRepository> logRepository(LogRepositoryRef ref) async {
   final repo = LogRepositoryImpl(
-    singbox: ref.watch(hiddifyCoreServiceProvider),
+    singbox: ref.watch(donutCoreServiceProvider),
     logPathResolver: ref.watch(logPathResolverProvider),
   );
   await repo.init().getOrElse((l) => throw l).run();
