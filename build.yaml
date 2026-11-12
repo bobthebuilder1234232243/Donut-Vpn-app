@@ -20,6 +20,8 @@ targets:
           output_file_name: translations.g.dart
           translation_class_visibility: public
           locale_handling: false
+      circle_flags:
+        enabled: false
       # protoc_builder:
       #   options:
       #     protobuf_version: "3.1.0"
