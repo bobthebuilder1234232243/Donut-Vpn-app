@@ -35,7 +35,7 @@ class CoreInterfaceDesktop extends CoreInterface with InfraLogger {
     } else if (Platform.isMacOS) {
       fullPath = p.join(fullPath, "donut-core.dylib");
     } else {
-      fullPath = p.join(fullPath, "donut-core.so");
+      fullPath = p.join(fullPath, "Donut-Core.so");
     }
 
     _logger.debug('donut-core native libs path: "$fullPath"');

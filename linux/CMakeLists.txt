@@ -108,11 +108,11 @@ install(CODE "
 set(INSTALL_BUNDLE_DATA_DIR "${CMAKE_INSTALL_PREFIX}/data")
 set(INSTALL_BUNDLE_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib")
 
-install(FILES "../donutvpn-core/bin/lib/donutvpn-core.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
+install(FILES "../donutvpn-core/bin/lib/Donut-Core.so" DESTINATION "${INSTALL_BUNDLE_LIB_DIR}"
   COMPONENT Runtime)
 
 install(
-  FILES "../donutvpn-core/bin/DonutVpnCli" 
+  FILES "../donutvpn-core/bin/DonutCli" 
   DESTINATION "${CMAKE_INSTALL_PREFIX}"
   PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ GROUP_EXECUTE GROUP_READ WORLD_EXECUTE WORLD_READ
   COMPONENT Runtime

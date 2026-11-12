@@ -46,7 +46,7 @@ DESKTOP_OUT=donutvpn-core$(SEP)bin
 GEO_ASSETS_DIR=assets$(SEP)core
 
 CORE_PRODUCT_NAME=donut-core
-CORE_NAME=donutvpn-lib
+CORE_NAME=donut-core
 LIB_NAME=donut-core
 
 ifeq ($(CHANNEL),prod)
