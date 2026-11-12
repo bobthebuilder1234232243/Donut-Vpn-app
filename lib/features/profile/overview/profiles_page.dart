@@ -6,7 +6,6 @@ import 'package:donutclub/core/model/failures.dart';
 import 'package:donutclub/core/router/bottom_sheets/bottom_sheets_notifier.dart';
 import 'package:donutclub/core/router/dialog/dialog_notifier.dart';
 import 'package:donutclub/features/profile/notifier/active_profile_notifier.dart';
-import 'package:donutclub/features/profile/notifier/profiles_update_notifier.dart';
 import 'package:donutclub/features/profile/overview/profiles_notifier.dart';
 import 'package:donutclub/features/profile/widget/profile_tile.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,11 +28,6 @@ class ProfilesPage extends HookConsumerWidget {
       appBar: AppBar(
         title: Text(t.pages.profiles.title),
         actions: [
-          IconButton(
-            onPressed: () => ref.read(foregroundProfilesUpdateNotifierProvider.notifier).trigger(),
-            icon: const Icon(Icons.update_rounded),
-            tooltip: t.pages.profiles.updateSubscriptions,
-          ),
           IconButton(
             onPressed: () => ref.read(dialogNotifierProvider.notifier).showSortProfiles(),
             icon: const Icon(Icons.sort_rounded),

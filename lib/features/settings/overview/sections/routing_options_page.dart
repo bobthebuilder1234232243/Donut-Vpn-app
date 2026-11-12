@@ -6,9 +6,7 @@ import 'package:donutclub/core/localization/translations.dart';
 import 'package:donutclub/core/model/region.dart';
 import 'package:donutclub/core/preferences/general_preferences.dart';
 import 'package:donutclub/core/router/bottom_sheets/bottom_sheets_notifier.dart';
-import 'package:donutclub/core/router/dialog/dialog_notifier.dart';
 import 'package:donutclub/features/per_app_proxy/model/per_app_proxy_mode.dart';
-import 'package:donutclub/features/per_app_proxy/overview/per_app_proxy_notifier.dart';
 import 'package:donutclub/features/route_rules/notifier/rules_notifier.dart';
 import 'package:donutclub/features/route_rules/widget/rule_tile.dart';
 import 'package:donutclub/features/settings/data/config_option_repository.dart';
@@ -186,23 +184,6 @@ class RoutingOptionsPage extends HookConsumerWidget {
                   presentChoice: (value) => value.present(t),
                   onChanged: (val) async {
                     await ref.read(ConfigOptions.directDnsAddress.notifier).reset();
-                    final autoRegion = ref.read(Preferences.autoAppsSelectionRegion);
-                    final mode = ref.read(Preferences.perAppProxyMode).toAppProxy();
-                    if (autoRegion != val &&
-                        autoRegion != null &&
-                        val != Region.other &&
-                        mode != null &&
-                        PlatformUtils.isAndroid) {
-                      await ref
-                          .read(dialogNotifierProvider.notifier)
-                          .showOk(
-                            t.pages.settings.routing.generalOptions.perAppProxy.autoSelection.dialog.title,
-                            t.pages.settings.routing.generalOptions.perAppProxy.autoSelection.dialog.msg(
-                              region: val.name,
-                            ),
-                          );
-                      await ref.read(PerAppProxyProvider(mode).notifier).clearAutoSelected();
-                    }
                   },
                 ),
                 if (PlatformUtils.isAndroid)

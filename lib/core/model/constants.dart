@@ -4,14 +4,14 @@ import 'package:donutclub/utils/utils.dart';
 
 abstract class Constants {
   static const appName = "Donut Vpn";
-  static const githubUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app";
-  static const licenseUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app?tab=License-1-ov-file#readme";
-  static const githubReleasesApiUrl = "https://api.github.com/repos/bobthebuilder1234232243/Donut-Vpn-app/releases";
-  static const githubLatestReleaseUrl = "https://github.com/bobthebuilder1234232243/Donut-Vpn-app/releases/latest";
-  static const appCastUrl = "https://raw.githubusercontent.com/bobthebuilder1234232243/Donut-Vpn-app/main/appcast.xml";
-  static const telegramChannelUrl = "https://t.me/donutclub";
-  static const privacyPolicyUrl = "https://donutclub.site/privacy/";
-  static const termsAndConditionsUrl = "https://donutclub.site/terms/";
+  static const githubUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const licenseUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const githubReleasesApiUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const githubLatestReleaseUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const appCastUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const telegramChannelUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const privacyPolicyUrl = "https://techperson1234.github.io/Donut-VPN/";
+  static const termsAndConditionsUrl = "https://techperson1234.github.io/Donut-VPN/";
   static const cfWarpPrivacyPolicy = "https://www.cloudflare.com/application/privacypolicy/";
   static const cfWarpTermsOfService = "https://www.cloudflare.com/application/terms/";
 }

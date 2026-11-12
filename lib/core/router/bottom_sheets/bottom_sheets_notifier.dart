@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:donutclub/core/localization/translations.dart';
 import 'package:donutclub/core/model/constants.dart';
-import 'package:donutclub/core/router/bottom_sheets/widgets/auto_apps_selection_modal.dart';
 import 'package:donutclub/core/router/bottom_sheets/widgets/quick_settings_modal.dart';
 import 'package:donutclub/core/router/dialog/dialog_notifier.dart';
 import 'package:donutclub/core/router/go_router/go_router_notifier.dart';
-import 'package:donutclub/features/per_app_proxy/model/per_app_proxy_mode.dart';
 import 'package:donutclub/features/profile/add/add_profile_modal.dart';
 import 'package:donutclub/features/profile/overview/profiles_modal.dart';
 import 'package:donutclub/features/route_rules/overview/predefined_rules_modal.dart';
@@ -66,9 +64,6 @@ class BottomSheetsNotifier extends _$BottomSheetsNotifier {
   Future<void> showProfilesOverview() async => await _show(isScrollControlled: true, child: const ProfilesModal());
 
   Future<void> showQuickSettings() async => await _show(isScrollControlled: false, child: const QuickSettingsModal());
-
-  Future<void> showAutoAppsSelection({required AppProxyMode mode}) async =>
-      await _show(isScrollControlled: false, child: AutoAppsSelectionModal(mode: mode));
 
   Future<void> showPredefinedRules() async =>
       await _show(isScrollControlled: true, child: const PredefinedRulesModal());

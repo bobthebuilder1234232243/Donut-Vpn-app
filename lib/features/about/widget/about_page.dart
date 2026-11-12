@@ -5,13 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:donutclub/core/app_info/app_info_provider.dart';
 import 'package:donutclub/core/directories/directories_provider.dart';
 import 'package:donutclub/core/localization/translations.dart';
-import 'package:donutclub/core/model/constants.dart';
-import 'package:donutclub/core/model/failures.dart';
-import 'package:donutclub/core/router/dialog/dialog_notifier.dart';
 import 'package:donutclub/core/widget/adaptive_icon.dart';
-import 'package:donutclub/features/app_update/notifier/app_update_notifier.dart';
-import 'package:donutclub/features/app_update/notifier/app_update_state.dart';
-import 'package:donutclub/gen/assets.gen.dart';
 import 'package:donutclub/utils/utils.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -22,34 +16,8 @@ class AboutPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final t = ref.watch(translationsProvider).requireValue;
     final appInfo = ref.watch(appInfoProvider).requireValue;
-    final appUpdate = ref.watch(appUpdateNotifierProvider);
-
-    ref.listen(appUpdateNotifierProvider, (_, next) async {
-      if (!context.mounted) return;
-      switch (next) {
-        case AppUpdateStateAvailable(:final versionInfo) || AppUpdateStateIgnored(:final versionInfo):
-          return await ref
-              .read(dialogNotifierProvider.notifier)
-              .showNewVersion(currentVersion: appInfo.presentVersion, newVersion: versionInfo, canIgnore: false);
-        case AppUpdateStateError(:final error):
-          return CustomToast.error(t.presentShortError(error)).show(context);
-        case AppUpdateStateNotAvailable():
-          return CustomToast.success(t.pages.about.notAvailableMsg).show(context);
-      }
-    });
 
     final conditionalTiles = [
-      if (appInfo.release.allowCustomUpdateChecker)
-        ListTile(
-          title: Text(t.pages.about.checkForUpdate),
-          trailing: switch (appUpdate) {
-            AppUpdateStateChecking() => const SizedBox(width: 24, height: 24, child: CircularProgressIndicator()),
-            _ => const Icon(FluentIcons.arrow_sync_24_regular),
-          },
-          onTap: () async {
-            await ref.read(appUpdateNotifierProvider.notifier).check();
-          },
-        ),
       if (PlatformUtils.isDesktop)
         ListTile(
           title: Text(t.pages.about.openWorkingDir),

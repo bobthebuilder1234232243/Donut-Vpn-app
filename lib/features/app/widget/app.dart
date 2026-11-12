@@ -16,7 +16,6 @@ import 'package:donutclub/core/theme/theme_preferences.dart';
 import 'package:donutclub/features/app_update/notifier/app_update_notifier.dart';
 import 'package:donutclub/features/connection/widget/connection_wrapper.dart';
 import 'package:donutclub/features/per_app_proxy/overview/per_app_proxy_service_notifier.dart';
-import 'package:donutclub/features/profile/notifier/profiles_update_notifier.dart';
 import 'package:donutclub/features/shortcut/shortcut_wrapper.dart';
 import 'package:donutclub/features/system_tray/notifier/system_tray_notifier.dart';
 import 'package:donutclub/features/window/widget/window_wrapper.dart';
@@ -62,7 +61,6 @@ class App extends HookConsumerWidget with WidgetsBindingObserver, PresLogger {
     final upgrader = ref.watch(upgraderProvider);
     final activeBreakpoint = Breakpoint(context).activeBreakpoint;
 
-    ref.listen(foregroundProfilesUpdateNotifierProvider, (_, _) {});
     if (PlatformUtils.isAndroid) ref.listen(perAppProxyServiceProvider, (_, _) {});
     if (PlatformUtils.isDesktop) ref.listen(systemTrayNotifierProvider, (_, _) {});
 
@@ -128,8 +126,6 @@ class App extends HookConsumerWidget with WidgetsBindingObserver, PresLogger {
   //   final themeMode = ref.watch(themePreferencesProvider);
   //   final theme = AppTheme(themeMode, locale.preferredFontFamily);
   //   final upgrader = ref.watch(upgraderProvider);
-
-  //   ref.listen(foregroundProfilesUpdateNotifierProvider, (_, __) {});
 
   //   return WindowWrapper(
   //     TrayWrapper(
